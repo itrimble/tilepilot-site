@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <title>TilePilot</title>
+  <desc>macOS window manager app icon. A 2x2 grid of tiles with one accent tile representing the active window being snapped into place.</desc>
+
+  <defs>
+    <!-- Background: deep indigo gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="0.55" stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#3730A3"/>
+    </linearGradient>
+
+    <!-- Inactive tile: translucent white glass -->
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.80"/>
+    </linearGradient>
+
+    <!-- Active tile: bright cyan -->
+    <linearGradient id="active" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.55" stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#0E7490"/>
+    </linearGradient>
+
+    <!-- Cyan halo behind active tile -->
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#22D3EE" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft drop shadow under all tiles -->
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="0" dy="6"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Stronger cyan-tinted shadow under active tile -->
+    <filter id="activeShadow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="0" dy="10"/>
+      <feFlood flood-color="#0891B2" flood-opacity="0.55"/>
+      <feComposite in2="SourceAlpha" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Top-edge highlight on each tile (subtle glass sheen) -->
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="0.35" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- macOS squircle background (superellipse approximation) -->
+  <path d="M 0,512 C 0,128 128,0 512,0 C 896,0 1024,128 1024,512 C 1024,896 896,1024 512,1024 C 128,1024 0,896 0,512 Z" fill="url(#bg)"/>
+
+  <!-- Cyan halo behind the active tile -->
+  <circle cx="684" cy="684" r="320" fill="url(#glow)"/>
+
+  <!-- 2x2 grid: 320x320 tiles, 24px gap, 180px outer padding -->
+
+  <!-- Top-left tile -->
+  <g filter="url(#shadow)">
+    <rect x="180" y="180" width="320" height="320" rx="40" fill="url(#tile)"/>
+    <rect x="180" y="180" width="320" height="120" rx="40" fill="url(#sheen)"/>
+  </g>
+
+  <!-- Top-right tile -->
+  <g filter="url(#shadow)">
+    <rect x="524" y="180" width="320" height="320" rx="40" fill="url(#tile)"/>
+    <rect x="524" y="180" width="320" height="120" rx="40" fill="url(#sheen)"/>
+  </g>
+
+  <!-- Bottom-left tile -->
+  <g filter="url(#shadow)">
+    <rect x="180" y="524" width="320" height="320" rx="40" fill="url(#tile)"/>
+    <rect x="180" y="524" width="320" height="120" rx="40" fill="url(#sheen)"/>
+  </g>
+
+  <!-- Bottom-right tile (active / accent) -->
+  <g filter="url(#activeShadow)">
+    <rect x="524" y="524" width="320" height="320" rx="40" fill="url(#active)"/>
+    <rect x="524" y="524" width="320" height="120" rx="40" fill="url(#sheen)" opacity="0.7"/>
+  </g>
+</svg>
